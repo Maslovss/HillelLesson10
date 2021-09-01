@@ -46,6 +46,7 @@ tags = {
     Lesson = "Lesson10"
     Owner = "maslovss@gmail.com"
     Purpose = "Study"
+    Terraform = "yes"
 }
 
 

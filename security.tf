@@ -31,3 +31,11 @@ resource "azurerm_network_security_group" "ngs" {
   tags = var.tags
 
 }
+
+
+resource "tls_private_key" "ssh" {
+  for_each     = var.vms    
+
+  algorithm    = "RSA"
+  rsa_bits     = 4096
+}

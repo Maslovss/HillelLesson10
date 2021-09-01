@@ -38,7 +38,7 @@ resource "azurerm_virtual_network_peering" "peering" {
 # Create public IPs for all VMs with vms.public_ip = true
 
 resource "azurerm_public_ip" "publicip" {
-     for_each = { for k, v in var.vms : k => v if var.public_ip }
+     for_each = { for k, v in var.vms : k => v if v.public_ip }
 
     name                         = "${var.prefix}-PublicIP"
     location                     = var.location

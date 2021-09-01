@@ -43,6 +43,6 @@ variable "peering" {
     from = string
     to = string
   }))
-  default = [  ]
+  default = [ {} ]
   
 }

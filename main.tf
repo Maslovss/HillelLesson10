@@ -29,7 +29,7 @@ resource "azurerm_virtual_network" "vnet-lesson10" {
   name = each.key
   address_space = each.value.address
 
-   dynamic "subnets" {
+   dynamic "subnet" {
       for_each = each.value.subnet_address
       content {
         name = "subnet-${each.key}-${subnets.key}"

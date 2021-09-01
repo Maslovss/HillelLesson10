@@ -48,19 +48,20 @@ resource "azurerm_public_ip" "publicip" {
 }
 
 # Create network interface for all MVs
-resource "azurerm_network_interface" "nics" {
-    for_each  =  var.vms
 
-    name                      = "${var.prefix}-nic-${each.key}"
-    location                  = var.location
-    resource_group_name       = azurerm_resource_group.rg.name
+# resource "azurerm_network_interface" "nics" {
+#     for_each  =  var.vms
 
-    ip_configuration {
-        name                          = "${var.prefix}-nic-${each.key}-configuration"
-        subnet_id                     = lookup(azurerm_virtual_network.vnets , each.value.vnet).subnet[ each.value.subnet_id ]
-        private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = lookup( azurerm_public_ip.publicip , each.key).id
-    }
+#     name                      = "${var.prefix}-nic-${each.key}"
+#     location                  = var.location
+#     resource_group_name       = azurerm_resource_group.rg.name
 
-    tags = var.tags
-}
+#     ip_configuration {
+#         name                          = "${var.prefix}-nic-${each.key}-configuration"
+#         subnet_id                     = lookup(azurerm_virtual_network.vnets , each.value.vnet).subnet[ each.value.subnet_id ]
+#         private_ip_address_allocation = "Dynamic"
+#         public_ip_address_id          = lookup( azurerm_public_ip.publicip , each.key).id
+#     }
+
+#     tags = var.tags
+# }

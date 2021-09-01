@@ -17,7 +17,7 @@ peering = {
         from = "vnet1"
         to   = "vnet2"
     },
-    v1to2 = {
+    v2to1 = {
         from = "vnet2"
         to   = "vnet1"
     }

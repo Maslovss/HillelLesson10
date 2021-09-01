@@ -100,5 +100,5 @@ resource "azurerm_private_dns_a_record" "private_dns_a_records" {
   zone_name           = azurerm_private_dns_zone.private_dns.name
   resource_group_name = azurerm_resource_group.rg.name
   ttl                 = 300
-  records             = lookup( azurerm_network_interface.nics , each.key ).private_ip_address
+  records             = [ lookup( azurerm_network_interface.nics , each.key ).private_ip_address ]
 }

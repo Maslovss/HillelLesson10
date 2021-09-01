@@ -20,8 +20,7 @@ variable "vnets" {
 
   default = {  
     vnet1 = { 
-      address = "my-vnet"
-      name = "10.10.0.0/16"
+      cidr_blocks = [ "10.10.0.0/16" ]
       subnet_address = [ "10.10.0.0/24" ]
     }
   }

@@ -29,13 +29,13 @@ vms = {
     vm1 = {
         vnet      = "vnet1"
         subnet_id = 0
-        public_ip = yes 
+        public_ip = true 
         nsg_rules  = [ "ssh" , "icmp" ]
     }
     vm2 = {
         vnet      = "vnet2"
         subnet_id = 1
-        public_ip = no 
+        public_ip = false
         nsg_rules  = [ "icmp" ]
     }
 }

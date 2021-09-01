@@ -13,26 +13,25 @@ provider "azurerm" {
 }
 
 
-resource "azurerm_resource_group" "lesson10" {
+resource "azurerm_resource_group" "lesson10rg" {
   name     = var.rgname
   location = var.location
 }
 
 
-resource "azurerm_virtual_network" "vnet-lesson10" {
-  for_each = var.vnets
+resource "azurerm_virtual_network" "lesson10vnets" {
+  for_each            = var.vnets
 
+  location            = var.location
+  resource_group_name = azurerm_resource_group.lesson10rg.name
   
-  location = var.location
-  resource_group_name = azurerm_resource_group.lesson10.name
-  
-  name = each.key
-  address_space = each.value.cidr_blocks
+  name                = each.key
+  address_space       = each.value.cidr_blocks
 
    dynamic "subnet" {
       for_each = each.value.subnet_address
       content {
-        name = "subnet-${each.key}-${subnet.key}"
+        name           = "subnet-${each.key}-${subnet.key}"
         address_prefix = subnet.value
       }
    }
@@ -40,3 +39,12 @@ resource "azurerm_virtual_network" "vnet-lesson10" {
   tags = var.tags
 
 }
+
+resource "azurerm_virtual_network_peering" "lesson10peering" {
+  for_each = var.peering    
+  name                      = "peer-${each.value.from}-to-${each.value.to}"
+  resource_group_name       = azurerm_resource_group.lesson10rg.name
+  virtual_network_name      = lookup(azurerm_virtual_network.lesson10vnets , each.value.from).name
+  remote_virtual_network_id = lookup(azurerm_virtual_network.lesson10vnets , each.value.to).id
+}
+

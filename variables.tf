@@ -30,8 +30,19 @@ variable "vnets" {
 
 variable "tags" {
   default = {
-    Environment = "Hillel"
+    Environment = "development"
+    Accounting = "Hillel"
+    Lesson = "Lesson10"
     Owner = "maslovss@gmail.com"
     Purpose = "Study"
   }
+}
+
+variable "peering" {
+  type = list(object({
+    from = string
+    to = string
+  }))
+  default = [  ]
+  
 }

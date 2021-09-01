@@ -12,9 +12,22 @@ vnets = {
     }
 }
 
+peering = [
+    {
+        from = "vnet1"
+        to   = "vnet2"
+    },
+    {
+        from = "vnet2"
+        to   = "vnet1"
+    }
+]
+
 
 tags = {
-    Environment = "Hillel"
+    Environment = "development"
+    Accounting = "Hillel"
+    Lesson = "Lesson10"
     Owner = "maslovss@gmail.com"
     Purpose = "Study"
 }

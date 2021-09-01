@@ -27,12 +27,32 @@ peering = {
 
 vms = {
     vm1 = {
+        size      = "Standard_DS1_v2"
+
+        publisher = "Canonical"
+        offer     = "UbuntuServer"
+        sku       = "18.04-LTS"
+        version   = "latest"        
+        
+        computer_name = "vm1-host"
+        admin_username = "ec2-user"
+
         vnet      = "vnet1"
         subnet_id = 0
         public_ip = true 
         nsg_rules  = [ "ssh" , "icmp" ]
     }
     vm2 = {
+        size      = "Standard_DS1_v2"
+
+        publisher = "Canonical"
+        offer     = "UbuntuServer"
+        sku       = "18.04-LTS"
+        version   = "latest"        
+        
+        computer_name = "vm2-host"
+        admin_username = "ec2-user"
+
         vnet      = "vnet2"
         subnet_id = 1
         public_ip = false

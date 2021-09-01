@@ -35,6 +35,17 @@ variable "vnets" {
 
 variable "vms" {
   type = map(object({
+
+       size      = string
+
+        publisher = string
+        offer     = string
+        sku       = string
+        version   = string        
+        
+        computer_name = string
+        admin_username = string   
+
         vnet      = string
         subnet_id = number
         public_ip = bool

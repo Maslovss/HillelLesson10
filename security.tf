@@ -11,7 +11,7 @@ resource "azurerm_network_security_group" "ngs" {
   dynamic "security_rule" {
       for_each = each.value.nsg_rules
       content {
-        name           = "${var.prefix}-ngs-rule-${security_rule.value.name}"
+        name           = "${var.prefix}-ngs-rule-${security_rule.value}"
         priority                   = lookup( var.nsgrules_definitions ,  security_rule.value).priority
         direction                  = lookup( var.nsgrules_definitions ,  security_rule.value).direction
         access                     = lookup( var.nsgrules_definitions ,  security_rule.value).access

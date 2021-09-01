@@ -1,6 +1,11 @@
 
 
 resource "azurerm_network_security_group" "ngs" {
+
+#For all VMs will created ngs( for all variable vms.nsg_rules ) 
+#For example f vm.ngs_rules = [ "ssh" , "icmp" , "http" ]  TF will create ngs with name {prefix}-ngs-ssh-icmp-http
+#and apply appropriate rules from variable nsgrules_definitions 
+
   for_each            = var.vms
   name                = "${var.prefix}-ngs-${join("-",each.value.nsg_rules)}"
 

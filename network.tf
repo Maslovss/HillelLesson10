@@ -33,3 +33,19 @@ resource "azurerm_virtual_network_peering" "peering" {
   virtual_network_name      = lookup(azurerm_virtual_network.vnets , each.value.from).name
   remote_virtual_network_id = lookup(azurerm_virtual_network.vnets , each.value.to).id
 }
+
+
+# Create public IPs for all VMs with vms.public_ip = true
+
+resource "azurerm_public_ip" "publicip" {
+     for_each = { for k, v in var.vms : k => v if var.public_ip }
+
+    name                         = "${var.prefix}-PublicIP"
+    location                     = var.location
+    resource_group_name          = azurerm_resource_group.rg.name
+    allocation_method            = "Dynamic"
+
+    tags = {
+        environment = "Terraform Demo"
+    }
+}

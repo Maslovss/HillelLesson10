@@ -1,5 +1,5 @@
 location = "eastus"
-rgname = "lesson10"
+rgname = "lesson10rg"
 
 vnets = { 
     vnet1 = {

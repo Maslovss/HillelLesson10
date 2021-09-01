@@ -72,3 +72,33 @@ resource "azurerm_network_interface_security_group_association" "nics-ngs-associ
     network_interface_id      =  lookup( azurerm_network_interface.nics ,  each.key).id
     network_security_group_id =  lookup( azurerm_network_security_group.ngs ,  each.key).id
 }
+
+
+####### DNS ##################
+
+
+resource "azurerm_private_dns_zone" "private_dns" {
+  name                = var.private_dns_name
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+
+resource "azurerm_private_dns_zone_virtual_network_link" "private_dns_links" {
+  for_each  =  var.vnets
+  
+  name                  = each.key
+
+  resource_group_name   = azurerm_resource_group.rg.name
+  private_dns_zone_name = azurerm_private_dns_zone.private_dns.name
+  virtual_network_id    = lookup( azurerm_virtual_network.vnets , each.key).id
+}
+
+resource "azurerm_private_dns_a_record" "private_dns_a_records" {
+  for_each  =  var.vms
+
+  name                = each.value.computer_name
+  zone_name           = azurerm_private_dns_zone.private_dns.name
+  resource_group_name = azurerm_resource_group.rg.name
+  ttl                 = 300
+  records             = lookup( azurerm_network_interface.nics , var.key ).private_ip_address
+}

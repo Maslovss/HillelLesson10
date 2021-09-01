@@ -14,9 +14,9 @@ variable "rgname" {
     default     = "my-rg"
 }
 
-variable "environment_name" {
+variable "private_dns_name" {
   type = string
-  default = "lesson10-env"
+  default = "azure.local"
 }
 
 

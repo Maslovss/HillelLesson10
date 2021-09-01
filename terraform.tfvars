@@ -2,6 +2,7 @@
 prefix = "lesson10"
 location = "eastus"
 rgname = "rg"
+private_dns_name = "lesson10.local"
 
 vnets = { 
     vnet1 = {

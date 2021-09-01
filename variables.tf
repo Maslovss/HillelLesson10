@@ -27,3 +27,11 @@ variable "vnets" {
 
   description = "Vnets definition list"
 }
+
+variable "tags" {
+  default = {
+    Environment = "Hillel"
+    Owner = "maslovss@gmail.com"
+    Purpose = "Study"
+  }
+}

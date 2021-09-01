@@ -37,8 +37,6 @@ resource "azurerm_virtual_network" "vnet-lesson10" {
       }
    }
 
-  tags = {
-    environment = "Study"
-  }
+  tags = var.tags
 
 }

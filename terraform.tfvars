@@ -11,3 +11,10 @@ vnets = {
         subnet_address = [ "10.10.16.0/24" , "10.10.17.0/24" ]
     }
 }
+
+
+tags = {
+    Environment = "Hillel"
+    Owner = "maslovss@gmail.com"
+    Purpose = "Study"
+}

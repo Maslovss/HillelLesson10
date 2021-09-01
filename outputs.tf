@@ -6,6 +6,6 @@
 
 
 output "tls_private_key" {
-    value = {for k, v in  tls_private_key.ssh : k => "VM=${k};KEY=${v.private_key_pem}" }
+    value = {for k, v in  tls_private_key.ssh : k => v.private_key_pem }
     sensitive  = true
 }

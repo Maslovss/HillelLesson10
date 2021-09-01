@@ -27,7 +27,7 @@ resource "azurerm_virtual_network" "vnet-lesson10" {
   resource_group_name = azurerm_resource_group.lesson10.name
   
   name = each.key
-  address_space = each.value.address
+  address_space = each.value.cidr_blocks
 
    dynamic "subnet" {
       for_each = each.value.subnet_address

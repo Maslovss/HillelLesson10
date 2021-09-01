@@ -16,36 +16,15 @@ variable "environment_name" {
 
 
 
-variable "vnet1" {
-  type = object({
-    name    = string
-    address = string
-    subnet_address = string
-  })
+variable "vnets" {
 
-  default = {
-    address = "Vnet1-lesson10"
-    name = "10.10.0.0/16"
-    subnet_address = "10.10.0.0/24"
+  default = {  
+    vnet1 = { 
+      address = "my-vnet"
+      name = "10.10.0.0/16"
+      subnet_address = [ "10.10.0.0/24" ]
+    }
   }
 
-  sensitive = true
-  description = "Vnet1 settings"
+  description = "Vnets definition list"
 }
-
-variable "vnet2" {
-  type = object({
-    name    = string
-    address = string
-    subnet_address = string
-  })
-
-  default = {
-    address = "Vnet2-lesson10"
-    name = "10.10.1.0/16"
-    subnet_address = "10.10.1.0/24"
-  }
-  
-  description = "Vnet2 settings"
-}
-

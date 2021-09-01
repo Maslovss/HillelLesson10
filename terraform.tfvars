@@ -12,16 +12,16 @@ vnets = {
     }
 }
 
-peering = [
-    {
+peering = {
+    v1to2 = {
         from = "vnet1"
         to   = "vnet2"
     },
-    {
+    v1to2 = {
         from = "vnet2"
         to   = "vnet1"
     }
-]
+}
 
 
 tags = {

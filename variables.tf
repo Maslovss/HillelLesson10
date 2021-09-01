@@ -39,7 +39,7 @@ variable "tags" {
 }
 
 variable "peering" {
-  type = list(object({
+  type = map(object({
     from = string
     to = string
   }))

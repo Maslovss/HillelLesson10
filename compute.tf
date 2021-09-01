@@ -6,7 +6,7 @@ resource "azurerm_linux_virtual_machine" "vms" {
     name                  = each.key
     location              = var.location
     resource_group_name   = azurerm_resource_group.rg.name
-    network_interface_ids = [ lookup(azurerm_network_interface.nics , each.key ) ]
+    network_interface_ids = [ lookup(azurerm_network_interface.nics , each.key ).id ]
     size                  = each.value.size
 
     os_disk {

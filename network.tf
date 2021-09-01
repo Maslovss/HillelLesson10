@@ -64,3 +64,11 @@ resource "azurerm_network_interface" "nics" {
 
     tags = var.tags
 }
+
+# Connect the security group to the network interface
+resource "azurerm_network_interface_security_group_association" "nics-ngs-association" {
+    for_each  =  var.vms
+
+    network_interface_id      =  lookup( azurerm_network_interface.nics ,  each.key).id
+    network_security_group_id =  lookup( azurerm_network_security_group.ngs ,  each.key).id
+}

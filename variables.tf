@@ -20,7 +20,6 @@ variable "private_dns_name" {
 }
 
 
-
 variable "vnets" {
 
   default = {  

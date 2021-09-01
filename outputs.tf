@@ -10,7 +10,6 @@ output "tls_private_key" {
     sensitive  = true
 }
 
-
 output "public_ips" {
     value = {for k, v in  azurerm_public_ip.publicip : k => v.ip_address }
 }

@@ -1,5 +1,5 @@
 
-# Create virtual machine
+# Create virtual  machine
 resource "azurerm_linux_virtual_machine" "vms" {
     for_each  =  var.vms    
 

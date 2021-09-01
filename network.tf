@@ -4,7 +4,6 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-
 resource "azurerm_virtual_network" "vnets" {
   for_each            = var.vnets
 

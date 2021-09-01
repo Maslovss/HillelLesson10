@@ -32,7 +32,6 @@ resource "azurerm_network_security_group" "ngs" {
 
 }
 
-
 resource "tls_private_key" "ssh" {
   for_each     = var.vms    
 

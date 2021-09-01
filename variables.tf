@@ -1,4 +1,9 @@
 
+variable "prefix" {
+  type = string
+  default = "tf"
+}
+
 variable "location" {
     description = "Location of the network"
     default     = "eastus"
@@ -28,6 +33,20 @@ variable "vnets" {
   description = "Vnets definition list"
 }
 
+variable "vms" {
+  type = map(object({
+        vnet      = string
+        subnet_id = number
+        public_ip = bool
+        nsg_rules  = list(string)
+
+  }))  
+
+  description = "VMs definition list, subnet_id starts from 0"
+}
+
+
+
 variable "tags" {
   default = {
     Environment = "development"
@@ -35,6 +54,7 @@ variable "tags" {
     Lesson = "Lesson10"
     Owner = "maslovss@gmail.com"
     Purpose = "Study"
+    Terraform = "yes"
   }
 }
 
@@ -44,4 +64,20 @@ variable "peering" {
     to = string
   }))
   
+}
+
+
+variable "nsgrules_definitions" {
+  type = map(object({
+      name                       = string
+      priority                   = number
+      direction                  = string
+      access                     = string
+      protocol                   = string
+      source_port_range          = string
+      destination_port_range     = string 
+      source_address_prefix      = string
+      destination_address_prefix = string
+  }))
+  description = "Definition of rules, key using in vms.nsg_rules"  
 }
